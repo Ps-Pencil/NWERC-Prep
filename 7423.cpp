@@ -1,3 +1,4 @@
+// https://icpcarchive.ecs.baylor.edu/external/74/7423.pdf
 #include <cstdio>
 #include <set>
 #include <algorithm>
