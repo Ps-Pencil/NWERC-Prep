@@ -1,3 +1,4 @@
+// https://icpcarchive.ecs.baylor.edu/external/74/7425.pdf
 #include <cstdio>
 #include <cstring>
 #include <queue>
