@@ -35,7 +35,7 @@ int main()
 		{
 			for (k=0;k<=255;k++)//y
 			{
-				if (i==0) d[1][j][k] = min(d[1][j][k],d[i][j][k]+1);//set i to 1
+				if (i==0) d[1][j][k] = min(d[1][j][k],d[i][j][k]+2);//set i to 1
 				if (j==0) d[i][1][k] = min(d[i][1][k],d[i][j][k]+1);//set j to 1
 				if (k==0) d[i][j][1] = min(d[i][j][1],d[i][j][k]+1);//set k to 1
 				
