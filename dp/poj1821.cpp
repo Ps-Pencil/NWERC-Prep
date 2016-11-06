@@ -7,7 +7,7 @@ int hp[500],pay[500],pos[500];
 
 long long d[200][25000];
 
-long long mq[250000][2];
+long long mq[25000][2];
 
 long long ans;
 
@@ -19,6 +19,18 @@ int main()
 	for (i=1;i<=m;i++)
 	{
 		scanf("%d %d %d",&hp[i],&pay[i],&pos[i]);
+	}
+	for (i=1;i<=m;i++)
+	{
+		for (j=1;j<=m-1;j++)
+		{
+			if (pos[j]>pos[j+1])
+			{
+				k = hp[j]; hp[j] = hp[j+1]; hp[j+1] = k;
+				k = pay[j]; pay[j] = pay[j+1]; pay[j+1] = k;
+				k = pos[j]; pos[j] = pos[j+1]; pos[j+1] = k;
+			}
+		}
 	}
 	int s,t;
 	for (i=1;i<=m;i++)
