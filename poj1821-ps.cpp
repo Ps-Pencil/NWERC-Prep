@@ -28,7 +28,7 @@ int main(){
   }
   sort(painters, painters+K,compare);
   for(int i = 0 ; i < K ; i ++){
-    for(int j= 1 ; j <= N; j++){
+    for(int j= 0 ; j <= N; j++){
       if( i == 0 ){
         int l = min(painters[i].L, j);
         dp[i][j]  = l * painters[i].P;
@@ -47,8 +47,7 @@ int main(){
           dp[i][j] = max(dp[i-1][j], dp[i][j-1]);
           if(j - painters[i].S + 1 <= painters[i].L){
             while(!q.empty()&&j-q.front() > painters[i].L) q.pop_front();
-            int t = q.empty() ? painters[i].S-1 : q.front();
-            dp[i][j] = max(dp[i][j],dp[i-1][t]+(j-t)*painters[i].P);
+            dp[i][j] = max(dp[i][j],dp[i-1][q.front()]+(j-q.front())*painters[i].P);
           }
         }
       }
