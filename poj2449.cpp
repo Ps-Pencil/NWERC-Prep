@@ -54,6 +54,7 @@ int astar(){
       q.push(pii(cur.second.first+dist[i.first]+i.second,ii(cur.second.first+i.second,i.first)));
     }
   }
+  return -1;
 }
 int main(){
   scanf("%d %d",&N,&M);
