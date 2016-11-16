@@ -61,3 +61,39 @@ priority_queue< ii, vector<ii>, greater<ii> > pq; pq.push(ii(0, s)); while (!pq.
       dist[v.first] = dist[u] + v.second; // relax operation
       pq.push(ii(dist[v.first], v.first));
     } } } // this variant can cause duplicate items in the priority queue
+// Edmond Karp
+#include <cstdio>
+#include <vector>
+#include <algorithm>
+#include <queue>
+#include <string>
+#include <iostream>
+#include <cstring>
+using namespace std;
+typedef vector<int> vi;
+#define INF 1000000000
+int MAX_V;
+int res[2000][2000],mf,f,s,t;
+vi p;
+void augment(int v, int minEdge){
+  if(v==s) {f = minEdge;return;}
+  else if(p[v] != -1) {augment(p[v],min(minEdge,res[p[v]][v]));res[p[v]][v]-=f;res[v][p[v]]+=f;}
+}
+// inside main
+mf = 0;
+while(1){
+  f = 0;
+  vi dist(MAX_V,INF);dist[s]=0;queue<int> q;q.push(s);
+  p.assign(MAX_V,-1);
+  while(!q.empty()){
+    int u = q.front();q.pop();
+    if(u == t) break;
+    for(int v=0;v < MAX_V;v++)
+      if(res[u][v]>0 && dist[v]==INF){
+        dist[v]=dist[u]+1;q.push(v);p[v]=u;
+      }
+  }
+  augment(t,INF);
+  if(f==0) break;
+  mf+=f;
+ }
