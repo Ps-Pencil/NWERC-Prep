@@ -1,3 +1,12 @@
+// MATH FORMULAE
+n^(n-2) spanning trees of complete graph (n) vetices
+derangement der(n) =(n-1)(der(n-1)+der(n-2)) tends to 1-e^-1
+d1>=d2>=d3 .. dn can be the "degree sequence" of a simple graph iff sum(di) is even and for all k, sum_i=1->k_(di) <= k(k-1)+sum_i=k+1->n(min(d_i,k)) holds
+V-E+F = 2 V(no of vertices) E(no of edge) F(no of faces)
+number of pieces into which a circle is divided if n points on its circumference are joined by chords with no three internally concurrent: g(n) = nC4 + nC2+1
+  Let I be the number of integer points in the polygon, A be the
+area of the polygon, and b be the number of integer points on the boundary, then A=i+ b/2 −1.
+no of spanning tree of complete bipartite graph is m^(n-1)*n^(m-1)
 //VIM Settings
 colorscheme desert
 set tabstop=4
@@ -76,7 +85,6 @@ bool FloydWarshall (VVT &w, VVI &prev){
     if (w[i][i] < 0) return false;
   return true;
 }
-
 // AdjList dinic
 // INPUT:
 //     - graph, constructed using AddEdge()
@@ -118,7 +126,6 @@ struct Dinic {
           q.emplace(e.v);}}}
     return d[T] != N + 1;
   }
-
   LL DFS(int u, int T, LL flow = -1) {
     if (u == T || flow == 0) return flow;
     for (int &i = pt[u]; i < g[u].size(); ++i) {
