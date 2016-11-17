@@ -468,7 +468,7 @@ PT ComputeCentroid(const vector<PT> &p) {
   }
   return c / scale;
 }
-// tests whether or not a given polygon (in CW or CCW order) is simple
+// tests if a given polygon (in CW or CCW order) is simple
 bool IsSimple(const vector<PT> &p) {
   for (int i = 0; i < p.size(); i++) {
     for (int k = i+1; k < p.size(); k++) {
@@ -480,6 +480,35 @@ bool IsSimple(const vector<PT> &p) {
     }
   }
   return true;
+}
+//Distance from x,y,z to ax+by+cz+d=0
+double PointPlaneDist(double x,double y,double z,
+double a,double b,double c,double d)
+{
+	return fabs(a*x+b*y+c*z+d)/sqrt(a*a+b*b+c*c);
+}
+//Distance between parallel planes ax+by+cz+d1=0 and +d2=0
+double PlanePlaneDist(double a,double b,double c,
+double d1,double d2)
+{
+	return fabs(d1-d2)/sqrt(a*a+b*b+c*c);
+}
+//Squared distance from px,py,pz to line x1,y1,z1-x2,y2,z2.
+//type: 0=line 1=segment 2=ray (first is endpoint)
+double PointLineDistSq(double x1,double y1,double z1,
+double x2,double y2,double z2,double px,double py,double pz,
+int type)
+{
+	double pd2 = (x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)+(z1-z2)*(z1-z2);
+	double x,y,z;
+	if (fabs(pd2)<EPS){x=x1;y=y1;z=z1;}
+	else {
+		double u=((px-x1)*(x2-x1)+(py-y1)*(y2-y1)+(pz-z1)*(z2-z1)/pd2;
+		x=x1+u*(x2-x1);y=y1+u*(y2-y1);z=z1+u*(z2-z1);
+		if ((type!=0) && (u<0) {x=x1;y=y1;z=z1;}
+		if ((type==1) && (u>1.0){x=x2;y=y2;z=z2;}
+	}
+	return (x-px)*(x-px)+(y-px)*(y-py)+(z-pz)*(z-pz);
 }
 //Miller Rabin. Error rate: 2^(-TRIAL)
 #define EPS 1e-7
